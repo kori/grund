@@ -1,5 +1,6 @@
-; memoize the calls to collatz
-; cps the cons call because reverse is slow in the same way as length
+; TODO:
+; 1. memoize the calls to collatz
+; 1. cps the cons call because reverse is slow in the same way as length
 
 (define collatz
   (lambda (n)
@@ -10,14 +11,13 @@
 
 (define collatz-path
   (letrec
-    ((f (lambda (in out cl)
+    ((f (lambda (in out)
          (if (= in 1)
            (reverse out)
            (f (collatz in)
-              (cons (collatz in) out)
-              (+ cl 1))))))
+              (cons (collatz in) out))))))
    (lambda (n)
-     (f n '() 0))))
+     (cons n (f n '())))))
 
 (define collatz-length
   (letrec
