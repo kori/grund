@@ -1,11 +1,12 @@
 ; knuth's up arrow notation
 
-(define repeat
-  (lambda (number counter)
-    (let aux ((in counter) (out '()))
-      (if (zero? in)
-        out
-        (aux (- in 1) (cons number out))))))
+; n = number
+; c = counter
+(define (repeat n c)
+  (let aux ((in c) (out '()))
+    (if (zero? in)
+      out
+      (aux (- in 1) (cons n out)))))
 
 ; d = depth
 ; a^b = (up 1 a b)
